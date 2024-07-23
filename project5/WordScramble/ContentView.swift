@@ -11,10 +11,12 @@ struct ContentView: View {
   @State private var errorMessage = ""
   @State private var showingError = false
   
+  @State private var userScore = 0
+  
   var body: some View {
     NavigationStack {
       List {
-        Section {
+        Section("Score: \(userScore)"){
           TextField("Enter your word", text: $newWord)
             .textInputAutocapitalization(.never)
         }
@@ -34,6 +36,9 @@ struct ContentView: View {
       .alert(errorTitle, isPresented: $showingError) { } message: {
         Text(errorMessage)
       }
+      .toolbar {
+        Button("Restart", action: startGame)
+      }
     }
   }
   
@@ -45,6 +50,10 @@ struct ContentView: View {
       wordError(title: "Word used already", message: "Be more original")
       return
     }
+    guard isLongEnough(word: answer) else {
+      wordError(title: "Word is not long enough", message: "Use a word of more than 3 letters")
+      return
+    }
     guard isPossible(word: answer) else {
       wordError(title: "Word not possible", message: "You can't spell that word from '\(rootWord)'!")
       return
@@ -53,6 +62,8 @@ struct ContentView: View {
       wordError(title: "Word not recognized", message: "You can't just make them up, you know!")
       return
     }
+    
+    userScore += 1 + answer.count
     
     withAnimation {
       usedWords.insert(answer, at: 0)
@@ -76,7 +87,7 @@ struct ContentView: View {
   }
   
   func isOriginal(word: String) -> Bool {
-    !usedWords.contains(word)
+    !usedWords.contains(word) && word != rootWord
   }
   
   func isPossible(word: String) -> Bool {
@@ -99,6 +110,10 @@ struct ContentView: View {
     let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
     
     return misspelledRange.location == NSNotFound
+  }
+  
+  func isLongEnough(word: String) -> Bool {
+    return word.count > 3
   }
   
   func wordError(title: String, message: String) {
