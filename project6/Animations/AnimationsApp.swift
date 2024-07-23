@@ -1,9 +1,9 @@
-// Created by brainfck on 7/17/24.
+// Created by brainfck on 7/23/24.
 
 import SwiftUI
 
 @main
-struct BetterRestApp: App {
+struct AnimationsApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
