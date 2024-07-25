@@ -13,6 +13,10 @@ struct ContentView: View {
   @State private var questionsCounter = 0
   @State private var showingFinal = false
   
+  @State private var animationAmount = [0.0, 0.0, 0.0]
+  @State private var opacityAmount = [1.0, 1.0, 1.0]
+  @State private var scaleAmount = [1.0, 1.0, 1.0]
+  
   private let maximumQuestion = 8
   
   var body: some View {
@@ -45,6 +49,12 @@ struct ContentView: View {
             } label: {
               FlagView(title: countries[number])
             }
+            .rotation3DEffect(
+              .degrees(animationAmount[number]),
+              axis: /*@START_MENU_TOKEN@*/(x: 0.0, y: 1.0, z: 0.0)/*@END_MENU_TOKEN@*/
+            )
+            .opacity(opacityAmount[number])
+            .scaleEffect(scaleAmount[number])
           }
         }
         .frame(maxWidth: .infinity)
@@ -81,6 +91,16 @@ struct ContentView: View {
       scoreTitle = "Wrong, that's the flag of \(countries[number])"
     }
     
+    withAnimation {
+      animationAmount[number] += 360
+      opacityAmount[number] = 1.0
+      opacityAmount[(number + 1) % 3] = 0.25
+      opacityAmount[(number + 2) % 3] = 0.25
+      
+      scaleAmount[(number + 1) % 3] = 0.25
+      scaleAmount[(number + 2) % 3] = 0.25
+    }
+    
     questionsCounter += 1
     
     if(questionsCounter >= maximumQuestion) {
@@ -100,6 +120,11 @@ struct ContentView: View {
   func askQuestion() {
     countries.shuffle()
     correctAnswer = Int.random(in: 0...2)
+    
+    withAnimation {
+      opacityAmount = [1.0, 1.0, 1.0]
+      scaleAmount = [1.0, 1.0, 1.0]
+    }
   }
 }
 
