@@ -4,34 +4,16 @@ import SwiftUI
 import Observation
 
 struct ContentView: View {
-  @State private var numbers = [Int]()
-  @State private var currentNumber = 1
+  @State private var user = User(firstName: "Taylor", lastName: "Swift")
   
   var body: some View {
-    NavigationStack {
-      VStack {
-        List {
-          ForEach(numbers, id: \.self) {
-            Text("Row \($0)")
-          }
-          .onDelete(perform: removeRows)
-        }
-        
-        Button("Add Number") {
-          numbers.append(currentNumber)
-          currentNumber += 1
-        }
-      }
-      .toolbar {
-        EditButton()
+    Button("Save User") {
+      let encoder = JSONEncoder()
+      
+      if let data = try? encoder.encode(user) {
+        UserDefaults.standard.set(data, forKey: "UserData")
       }
     }
-    
-    
-  }
-  
-  func removeRows(at offsets: IndexSet) {
-    numbers.remove(atOffsets: offsets)
   }
 }
 
@@ -48,11 +30,9 @@ struct SecondView: View {
   }
 }
 
-// class instead of struct because we want to share data between different views
-@Observable
-class User {
-  var firstName = "Bilbo"
-  var lastName = "Baggins"
+struct User: Codable {
+  let firstName: String
+  let lastName: String
 }
 
 #Preview {
