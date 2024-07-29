@@ -1,6 +1,7 @@
 // Created by brainfck on 7/29/24.
 
 import SwiftUI
+import Observation
 
 struct ContentView: View {
   @State private var user = User()
