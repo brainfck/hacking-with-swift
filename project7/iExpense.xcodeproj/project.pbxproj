@@ -12,6 +12,7 @@
 		2D1911912C579F5900485FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1911902C579F5900485FF9 /* Assets.xcassets */; };
 		2D1911942C579F5900485FF9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1911932C579F5900485FF9 /* Preview Assets.xcassets */; };
 		2D570F442C597B840033EFC7 /* ExpenseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570F432C597B840033EFC7 /* ExpenseItem.swift */; };
+		2D570F462C597E650033EFC7 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570F452C597E650033EFC7 /* AddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		2D1911902C579F5900485FF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D1911932C579F5900485FF9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2D570F432C597B840033EFC7 /* ExpenseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItem.swift; sourceTree = "<group>"; };
+		2D570F452C597E650033EFC7 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		2D19118B2C579F5800485FF9 /* iExpense */ = {
 			isa = PBXGroup;
 			children = (
+				2D570F452C597E650033EFC7 /* AddView.swift */,
 				2D19118C2C579F5800485FF9 /* iExpenseApp.swift */,
 				2D19118E2C579F5800485FF9 /* ContentView.swift */,
 				2D1911902C579F5900485FF9 /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D570F462C597E650033EFC7 /* AddView.swift in Sources */,
 				2D19118F2C579F5800485FF9 /* ContentView.swift in Sources */,
 				2D570F442C597B840033EFC7 /* ExpenseItem.swift in Sources */,
 				2D19118D2C579F5800485FF9 /* iExpenseApp.swift in Sources */,
