@@ -3,17 +3,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+  var body: some View {
+    VStack {
+      Image(.example)
+        .resizable()
+        .scaledToFit()
+        .containerRelativeFrame(.horizontal) { size, axis in
+          size * 0.8
         }
-        .padding()
     }
+  }
 }
 
 #Preview {
-    ContentView()
+  ContentView()
 }
