@@ -17,6 +17,7 @@
 		2D6946692C61256000923895 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6946682C61256000923895 /* Bundle-Decodable.swift */; };
 		2D69466B2C61287900923895 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D69466A2C61287900923895 /* Mission.swift */; };
 		2D69466D2C612CD300923895 /* Color-Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D69466C2C612CD300923895 /* Color-Theme.swift */; };
+		2DD8314B2C62BCAE00DBAE6D /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8314A2C62BCAE00DBAE6D /* MissionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		2D6946682C61256000923895 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		2D69466A2C61287900923895 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		2D69466C2C612CD300923895 /* Color-Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Theme.swift"; sourceTree = "<group>"; };
+		2DD8314A2C62BCAE00DBAE6D /* MissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				2D6946682C61256000923895 /* Bundle-Decodable.swift */,
 				2D27168B2C5CCEE20059944F /* Assets.xcassets */,
 				2D27168D2C5CCEE20059944F /* Preview Content */,
+				2DD8314A2C62BCAE00DBAE6D /* MissionView.swift */,
 			);
 			path = Moonshot;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DD8314B2C62BCAE00DBAE6D /* MissionView.swift in Sources */,
 				2D6946672C61251900923895 /* Astronaut.swift in Sources */,
 				2D69466D2C612CD300923895 /* Color-Theme.swift in Sources */,
 				2D27168A2C5CCEE10059944F /* ContentView.swift in Sources */,
