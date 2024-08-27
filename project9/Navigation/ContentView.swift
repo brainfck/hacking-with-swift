@@ -3,17 +3,31 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+  var body: some View {
+    NavigationStack {
+      List(0..<1000) { i in
+        // already created without even tapping, showing is enough for creating
+        NavigationLink("Tap me") {
+          DetailView(number: i)
         }
-        .padding()
+      }
     }
+  }
+}
+
+struct DetailView: View {
+  var number: Int
+  
+  var body: some View {
+    Text("Detail View \(number)")
+  }
+  
+  init(number: Int) {
+    self.number = number
+    print("Creating detailed view \(number)")
+  }
 }
 
 #Preview {
-    ContentView()
+  ContentView()
 }
