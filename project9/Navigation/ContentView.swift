@@ -6,25 +6,12 @@ struct ContentView: View {
   var body: some View {
     NavigationStack {
       List(0..<1000) { i in
-        // already created without even tapping, showing is enough for creating
-        NavigationLink("Tap me") {
-          DetailView(number: i)
-        }
+        NavigationLink("Select \(i)", value: i)
+      }
+      .navigationDestination(for: Int.self) { selection in
+          Text("You selected \(selection)")
       }
     }
-  }
-}
-
-struct DetailView: View {
-  var number: Int
-  
-  var body: some View {
-    Text("Detail View \(number)")
-  }
-  
-  init(number: Int) {
-    self.number = number
-    print("Creating detailed view \(number)")
   }
 }
 
