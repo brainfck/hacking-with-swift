@@ -3,26 +3,20 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State private var pathStore = PathStore()
-  
   var body: some View {
-    NavigationStack(path: $pathStore.path) {
-      DetailedView(number: 0)
-        .navigationDestination(for: Int.self) { i in
-          DetailedView(number: i)
-        }
+    NavigationStack {
+      List(0..<100) { i in
+        Text("Row \(i)")
+      }
+      .navigationTitle("Title goes here")
+      .navigationBarTitleDisplayMode(.inline)
+      .toolbarBackground(.blue, for: .navigationBar)
+      .toolbarColorScheme(.dark, for: .navigationBar)
+      .toolbar(.hidden, for: .navigationBar)
     }
   }
 }
 
-struct DetailedView: View {
-  var number: Int
-  
-  var body: some View {
-    NavigationLink("Go to Random Number", value: Int.random(in: 1...1000))
-      .navigationTitle("Number: \(number)")
-  }
-}
 
 #Preview {
   ContentView()
