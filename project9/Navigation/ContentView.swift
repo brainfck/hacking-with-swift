@@ -5,14 +5,29 @@ import SwiftUI
 struct ContentView: View {
   var body: some View {
     NavigationStack {
-      List(0..<100) { i in
-        Text("Row \(i)")
+      Text("Hello, World!")
+      .toolbar {
+        ToolbarItemGroup(placement: .topBarLeading) {
+          Button("Tap me") {
+            
+          }
+          Button("Tap me 2") {
+            
+          }
+        }
+        
+        ToolbarItem(placement: .topBarLeading) {
+          Button("Tap me") {
+            
+          }
+        }
+        
+        ToolbarItem(placement: .topBarLeading) {
+          Button("Or Tap me") {
+            
+          }
+        }
       }
-      .navigationTitle("Title goes here")
-      .navigationBarTitleDisplayMode(.inline)
-      .toolbarBackground(.blue, for: .navigationBar)
-      .toolbarColorScheme(.dark, for: .navigationBar)
-      .toolbar(.hidden, for: .navigationBar)
     }
   }
 }
