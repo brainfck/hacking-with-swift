@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D51FF482C87B43300791236 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D51FF472C87B43300791236 /* Order.swift */; };
+		2D51FF4A2C87B63300791236 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D51FF492C87B63300791236 /* AddressView.swift */; };
 		2DB6A84C2C85C419002F4BB0 /* CupcakeCornerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6A84B2C85C419002F4BB0 /* CupcakeCornerApp.swift */; };
 		2DB6A84E2C85C419002F4BB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6A84D2C85C419002F4BB0 /* ContentView.swift */; };
 		2DB6A8502C85C419002F4BB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB6A84F2C85C419002F4BB0 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D51FF472C87B43300791236 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		2D51FF492C87B63300791236 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		2DB6A8482C85C419002F4BB0 /* CupcakeCorner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CupcakeCorner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB6A84B2C85C419002F4BB0 /* CupcakeCornerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupcakeCornerApp.swift; sourceTree = "<group>"; };
 		2DB6A84D2C85C419002F4BB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 			children = (
 				2DB6A84B2C85C419002F4BB0 /* CupcakeCornerApp.swift */,
 				2DB6A84D2C85C419002F4BB0 /* ContentView.swift */,
+				2D51FF492C87B63300791236 /* AddressView.swift */,
+				2D51FF472C87B43300791236 /* Order.swift */,
 				2DB6A84F2C85C419002F4BB0 /* Assets.xcassets */,
 				2DB6A8512C85C419002F4BB0 /* Preview Content */,
 			);
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D51FF482C87B43300791236 /* Order.swift in Sources */,
+				2D51FF4A2C87B63300791236 /* AddressView.swift in Sources */,
 				2DB6A84E2C85C419002F4BB0 /* ContentView.swift in Sources */,
 				2DB6A84C2C85C419002F4BB0 /* CupcakeCornerApp.swift in Sources */,
 			);
