@@ -13,6 +13,7 @@
 		2DB6A84E2C85C419002F4BB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6A84D2C85C419002F4BB0 /* ContentView.swift */; };
 		2DB6A8502C85C419002F4BB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB6A84F2C85C419002F4BB0 /* Assets.xcassets */; };
 		2DB6A8532C85C419002F4BB0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB6A8522C85C419002F4BB0 /* Preview Assets.xcassets */; };
+		2DE683252C88F405007EC6BC /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE683242C88F405007EC6BC /* CheckoutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		2DB6A84D2C85C419002F4BB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2DB6A84F2C85C419002F4BB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DB6A8522C85C419002F4BB0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2DE683242C88F405007EC6BC /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				2DB6A84B2C85C419002F4BB0 /* CupcakeCornerApp.swift */,
 				2DB6A84D2C85C419002F4BB0 /* ContentView.swift */,
+				2DE683242C88F405007EC6BC /* CheckoutView.swift */,
 				2D51FF492C87B63300791236 /* AddressView.swift */,
 				2D51FF472C87B43300791236 /* Order.swift */,
 				2DB6A84F2C85C419002F4BB0 /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 			files = (
 				2D51FF482C87B43300791236 /* Order.swift in Sources */,
 				2D51FF4A2C87B63300791236 /* AddressView.swift in Sources */,
+				2DE683252C88F405007EC6BC /* CheckoutView.swift in Sources */,
 				2DB6A84E2C85C419002F4BB0 /* ContentView.swift in Sources */,
 				2DB6A84C2C85C419002F4BB0 /* CupcakeCornerApp.swift in Sources */,
 			);
