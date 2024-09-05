@@ -4,25 +4,35 @@ import SwiftUI
 
 struct AddressView: View {
   @Bindable var order: Order
+  @State private var navigateToCheckout = false
   
   var body: some View {
-    Form {
-      Section {
-        TextField("Name", text: $order.name)
-        TextField("Street Address", text: $order.streetAddress)
-        TextField("City", text: $order.city)
-        TextField("Zip", text: $order.zip)
-      }
-      
-      Section {
-        NavigationLink("Check out") {
-          CheckoutView(order: order)
+    NavigationStack {
+      Form {
+        Section {
+          TextField("Name", text: $order.name)
+          TextField("Street Address", text: $order.streetAddress)
+          TextField("City", text: $order.city)
+          TextField("Zip", text: $order.zip)
+        }
+        
+        Section {
+          Button("Check out") {
+            order.saveOrder()
+            
+            navigateToCheckout = true
+          }
+          .disabled(order.hasValidAddress == false)
         }
       }
-      .disabled(order.hasValidAddress == false)
+      .navigationTitle("Delivery details")
+      .navigationBarTitleDisplayMode(.inline)
+      .navigationDestination(isPresented: $navigateToCheckout) {
+        CheckoutView(order: order)
+      }
     }
-    .navigationTitle("Delivery details")
-    .navigationBarTitleDisplayMode(.inline)
+    
+    
   }
 }
 

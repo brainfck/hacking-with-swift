@@ -4,7 +4,7 @@ import SwiftUI
 import CoreHaptics
 
 struct ContentView: View {
-  @State private var order = Order()
+  @State private var order = Order(fromUserDefaults: true)
   
   var body: some View {
     NavigationStack {

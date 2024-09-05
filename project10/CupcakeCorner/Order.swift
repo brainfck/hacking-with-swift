@@ -16,7 +16,6 @@ class Order: Codable {
     case _zip = "zip"
   }
   
-  
   static let types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
   
   var type = 0
@@ -39,7 +38,10 @@ class Order: Codable {
   var addSprinkles = false
   
   var hasValidAddress: Bool {
-    if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
+    if name.trimmingCharacters(in: .whitespaces).isEmpty ||
+        streetAddress.trimmingCharacters(in: .whitespaces).isEmpty ||
+        city.trimmingCharacters(in: .whitespaces).isEmpty ||
+        zip.trimmingCharacters(in: .whitespaces).isEmpty {
       return false
     }
     
@@ -60,5 +62,32 @@ class Order: Codable {
     }
     
     return cost
+  }
+  
+  func saveOrder() {
+    let encoder = JSONEncoder()
+    if let encodedOrder = try? encoder.encode(self) {
+      UserDefaults.standard.set(encodedOrder, forKey: "savedOrder")
+    }
+  }
+  
+  convenience init(fromUserDefaults: Bool) {
+    if fromUserDefaults {
+      let decoder = JSONDecoder()
+      
+      if let savedOrderData = UserDefaults.standard.data(forKey: "savedOrder"),
+         let decodedOrder = try? decoder.decode(Order.self, from: savedOrderData) {
+        self.init()
+        
+        self.name = decodedOrder.name
+        self.streetAddress = decodedOrder.streetAddress
+        self.city = decodedOrder.city
+        self.zip = decodedOrder.zip
+      } else {
+        self.init()
+      }
+    } else {
+      self.init()
+    }
   }
 }
