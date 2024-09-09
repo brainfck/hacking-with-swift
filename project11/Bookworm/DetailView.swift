@@ -34,6 +34,9 @@ struct DetailView: View {
       Text(book.review)
         .padding()
       
+      Text(getFormattedDate())
+        .padding()
+      
       RatingView(rating: .constant(book.rating))
         .font(.largeTitle)
     }
@@ -56,6 +59,15 @@ struct DetailView: View {
   func deleteBook() {
     modelContext.delete(book)
     dismiss()
+  }
+  
+  func getFormattedDate() -> String {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .none
+    formatter.locale = Locale.current
+    
+    return formatter.string(from: book.date)
   }
 }
 

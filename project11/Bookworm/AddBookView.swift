@@ -40,11 +40,22 @@ struct AddBookView: View {
             let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating)
             modelContext.insert(newBook)
             dismiss()
-          }
+          }.disabled(self.hasValidBookData == false)
         }
       }
       .navigationTitle("Add Book")
     }
+  }
+  
+  var hasValidBookData: Bool {
+    if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+        author.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+        review.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+        genres.contains(genre) == false {
+      return false
+    }
+    
+    return true
   }
 }
 
