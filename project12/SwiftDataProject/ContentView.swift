@@ -23,6 +23,8 @@ struct ContentView: View {
       UsersView(minimumJoinDate: showingUpcomingOnly ? .now : .distantPast, sortOrder: sortOrder)
         .navigationTitle("Users")
         .toolbar {
+          //Button("Add Samples", action: addSample)
+          
           Button(showingUpcomingOnly ? "Show Everyone" : "Show Upcoming") {
             showingUpcomingOnly.toggle()
           }
@@ -44,6 +46,17 @@ struct ContentView: View {
           }
         }
     }
+  }
+  
+  func addSample() {
+    let user1 = User(name: "Piper Chapman", city: "New York", joinDate: .now)
+    let job1 = Job(name: "Organize sock drawer", priority: 3)
+    let job2 = Job(name: "Make plans with Alex", priority: 4)
+    
+    modelContext.insert(user1)
+    
+    user1.jobs.append(job1)
+    user1.jobs.append(job2)
   }
 }
 
