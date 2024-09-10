@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DBCDA9C2C90786800E0FD59 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBCDA9B2C90786800E0FD59 /* User.swift */; };
+		2DBCDA9E2C9078BC00E0FD59 /* EditUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBCDA9D2C9078BC00E0FD59 /* EditUserView.swift */; };
 		2DDFB0C62C90767E003ABA2D /* SwiftDataProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFB0C52C90767E003ABA2D /* SwiftDataProjectApp.swift */; };
 		2DDFB0C82C90767E003ABA2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFB0C72C90767E003ABA2D /* ContentView.swift */; };
 		2DDFB0CA2C90767E003ABA2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFB0C92C90767E003ABA2D /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DBCDA9B2C90786800E0FD59 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2DBCDA9D2C9078BC00E0FD59 /* EditUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserView.swift; sourceTree = "<group>"; };
 		2DDFB0C22C90767E003ABA2D /* SwiftDataProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DDFB0C52C90767E003ABA2D /* SwiftDataProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataProjectApp.swift; sourceTree = "<group>"; };
 		2DDFB0C72C90767E003ABA2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,7 +56,9 @@
 			isa = PBXGroup;
 			children = (
 				2DDFB0C52C90767E003ABA2D /* SwiftDataProjectApp.swift */,
+				2DBCDA9D2C9078BC00E0FD59 /* EditUserView.swift */,
 				2DDFB0C72C90767E003ABA2D /* ContentView.swift */,
+				2DBCDA9B2C90786800E0FD59 /* User.swift */,
 				2DDFB0C92C90767E003ABA2D /* Assets.xcassets */,
 				2DDFB0CB2C90767E003ABA2D /* Preview Content */,
 			);
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DDFB0C82C90767E003ABA2D /* ContentView.swift in Sources */,
+				2DBCDA9E2C9078BC00E0FD59 /* EditUserView.swift in Sources */,
 				2DDFB0C62C90767E003ABA2D /* SwiftDataProjectApp.swift in Sources */,
+				2DBCDA9C2C90786800E0FD59 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
