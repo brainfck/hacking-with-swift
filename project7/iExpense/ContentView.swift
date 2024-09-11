@@ -1,20 +1,20 @@
 // Created by brainfck on 7/29/24.
 
+import SwiftData
 import SwiftUI
-import Observation
 
 struct ContentView: View {
-  @State private var expenses = Expenses()
+  @Environment(\.modelContext) var modelContext
+  @Query() var expenses: [ExpenseItem]
+
   @State private var showingAddExpense = false
-  
+
   var body: some View {
     NavigationStack {
-      Section("Personal") {
+      Section {
         List {
-          ForEach(expenses.items) { item in
-            if(item.type == "Personal") {
-              ExpenseView(name: item.name, type: item.type, amount: item.amount)
-            }
+          ForEach(expenses) { item in
+            ExpenseView(expenseItem: item)
           }
           .onDelete(perform: removeItems)
         }
@@ -25,48 +25,24 @@ struct ContentView: View {
           }
         }
       }
-      
-      Section("Business") {
-        List {
-          ForEach(expenses.items) { item in
-            if(item.type == "Business") {
-              ExpenseView(name: item.name, type: item.type, amount: item.amount)
-            }
-          }
-          .onDelete(perform: removeItems)
-        }
-      }
     }
-//    .sheet(isPresented: $showingAddExpense) {
-//      AddView(expenses: expenses)
-//    }
+    .sheet(isPresented: $showingAddExpense) {
+      AddView()
+    }
   }
-  
-  func removeItems(at offsets: IndexSet) {
-    expenses.items.remove(atOffsets: offsets)
-  }
-}
 
-struct ExpenseView: View {
-  let name: String
-  let type: String
-  let amount: Double
-  
-  var body: some View {
-    HStack {
-      VStack(alignment: .leading) {
-        Text(name)
-          .font(.headline)
-        Text(type)
-      }
-      
-      Spacer()
-      Text(amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-        .foregroundStyle(amount < 10 ? .green : amount < 100 ? .blue : .red)
+  func removeItems(at offsets: IndexSet) {
+    for offset in offsets {
+      let expense = expenses[offset]
+
+      modelContext.delete(expense)
     }
   }
 }
 
 #Preview {
-  ContentView()
+  let previewContainer = try! ModelContainer(for: ExpenseItem.self)
+
+  return ContentView()
+    .modelContainer(previewContainer)
 }
