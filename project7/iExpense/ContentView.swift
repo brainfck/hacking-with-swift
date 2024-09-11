@@ -4,38 +4,53 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-  @Environment(\.modelContext) var modelContext
-  @Query() var expenses: [ExpenseItem]
+  @Query var expenses: [ExpenseItem]
 
   @State private var showingAddExpense = false
 
+  @State private var sortOder = [
+    SortDescriptor(\ExpenseItem.amount),
+    SortDescriptor(\ExpenseItem.name)
+  ]
+  
+  @State private var filter = "ALL"
+
   var body: some View {
     NavigationStack {
-      Section {
-        List {
-          ForEach(expenses) { item in
-            ExpenseView(expenseItem: item)
-          }
-          .onDelete(perform: removeItems)
-        }
-        .navigationTitle("iExpense")
+      ExpensesView(filter: filter, sortOrder: sortOder)
+        .navigationTitle("Expenses")
         .toolbar {
-          Button("Add Expense", systemImage: "plus") {
+          Button("Add Item", systemImage: "plus") {
             showingAddExpense = true
           }
+          
+          Menu("Sort", systemImage: "arrow.up.arrow.down") {
+            Picker("Sort", selection: $sortOder) {
+              Text("Sort by Name")
+                .tag([
+                  SortDescriptor(\ExpenseItem.name),
+                  SortDescriptor(\ExpenseItem.amount),
+                ])
+              
+              Text("Sort by Amount")
+                .tag([
+                  SortDescriptor(\ExpenseItem.amount),
+                  SortDescriptor(\ExpenseItem.name),
+                ])
+            }
+          }
+          
+          Menu("Filter", systemImage: "line.horizontal.3.decrease") {
+            Picker("Filter", selection: $filter) {
+              Text("ALL").tag("ALL")
+              Text("Business").tag("Business")
+              Text("Personal").tag("Personal")
+            }
+          }
         }
-      }
-    }
-    .sheet(isPresented: $showingAddExpense) {
-      AddView()
-    }
-  }
-
-  func removeItems(at offsets: IndexSet) {
-    for offset in offsets {
-      let expense = expenses[offset]
-
-      modelContext.delete(expense)
+        .sheet(isPresented: $showingAddExpense) {
+          AddView()
+        }
     }
   }
 }

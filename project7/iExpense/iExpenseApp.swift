@@ -1,5 +1,6 @@
 // Created by brainfck on 7/29/24.
 
+import SwiftData
 import SwiftUI
 
 @main

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D0F9D492C91A45000A60E5D /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0F9D482C91A45000A60E5D /* ExpenseView.swift */; };
+		2D0F9D4B2C91A83F00A60E5D /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0F9D4A2C91A83F00A60E5D /* ExpensesView.swift */; };
 		2D19118D2C579F5800485FF9 /* iExpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D19118C2C579F5800485FF9 /* iExpenseApp.swift */; };
 		2D19118F2C579F5800485FF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D19118E2C579F5800485FF9 /* ContentView.swift */; };
 		2D1911912C579F5900485FF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1911902C579F5900485FF9 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		2D0F9D482C91A45000A60E5D /* ExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseView.swift; sourceTree = "<group>"; };
+		2D0F9D4A2C91A83F00A60E5D /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
 		2D1911892C579F5800485FF9 /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D19118C2C579F5800485FF9 /* iExpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iExpenseApp.swift; sourceTree = "<group>"; };
 		2D19118E2C579F5800485FF9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				2D1911922C579F5900485FF9 /* Preview Content */,
 				2D570F432C597B840033EFC7 /* ExpenseItem.swift */,
 				2D0F9D482C91A45000A60E5D /* ExpenseView.swift */,
+				2D0F9D4A2C91A83F00A60E5D /* ExpensesView.swift */,
 			);
 			path = iExpense;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D0F9D492C91A45000A60E5D /* ExpenseView.swift in Sources */,
+				2D0F9D4B2C91A83F00A60E5D /* ExpensesView.swift in Sources */,
 				2D570F462C597E650033EFC7 /* AddView.swift in Sources */,
 				2D19118F2C579F5800485FF9 /* ContentView.swift in Sources */,
 				2D570F442C597B840033EFC7 /* ExpenseItem.swift in Sources */,
