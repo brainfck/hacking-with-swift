@@ -1,17 +1,27 @@
-// Created by brainfck on 9/12/24.
-
 import Foundation
+import SwiftData
 
-// use ObservableObject for your data model, like MyDataViewModel, when you want to make it observable by SwiftUI views.
 class UsersViewModel: ObservableObject {
-  // @Published: Automatically updates the view when new data is loaded.
   @Published var users = [User]()
   
-  func fetchData() {
-    if !users.isEmpty {
-      return
+  func loadUsers(context: ModelContext) {
+    // Define a FetchDescriptor for User
+    let fetchDescriptor = FetchDescriptor<User>()
+    
+    do {
+      // Fetch users using the descriptor
+      users = try context.fetch(fetchDescriptor)
+    } catch {
+      print("Error fetching users: \(error.localizedDescription)")
     }
     
+    // If no users are found, fetch from the API
+    if users.isEmpty {
+      fetchFromAPI(context: context)
+    }
+  }
+  
+  private func fetchFromAPI(context: ModelContext) {
     guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json") else {
       print("Invalid URL")
       return
@@ -28,23 +38,30 @@ class UsersViewModel: ObservableObject {
         return
       }
       
-      if let jsonString = String(data: data, encoding: .utf8) {
-        print("Raw JSON Response: \(jsonString)")
-      }
-      
       let decoder = JSONDecoder()
       decoder.dateDecodingStrategy = .iso8601
       
       do {
-        let decodedData = try decoder.decode([User].self, from: data)
+        let decodedUsers = try decoder.decode([User].self, from: data)
+        
+        // Save users to SwiftData
         DispatchQueue.main.async {
-          self.users = decodedData
+          // Insert data into context
+          for user in decodedUsers {
+            context.insert(user)
+          }
+          
+          do {
+            try context.save() // Save changes to the context
+            self.users = decodedUsers
+          } catch {
+            print("Error saving users: \(error.localizedDescription)")
+          }
         }
       } catch {
         print("Error decoding JSON: \(error.localizedDescription)")
       }
     }
-    
     task.resume()
   }
 }

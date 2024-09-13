@@ -1,8 +1,10 @@
 // Created by brainfck on 9/12/24.
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+  @Environment(\.modelContext) private var modelContext
   // @StateObject: Keeps the MyDataViewModel alive throughout the view’s lifecycle.
   @StateObject private var viewModel = UsersViewModel()
 
@@ -30,11 +32,14 @@ struct ContentView: View {
     }
 
     .onAppear {
-      viewModel.fetchData()
+      viewModel.loadUsers(context: modelContext)
     }
   }
 }
 
 #Preview {
-  ContentView()
+  let previewContainer = try! ModelContainer(for: User.self)
+  
+  return ContentView()
+    .modelContainer(previewContainer)
 }

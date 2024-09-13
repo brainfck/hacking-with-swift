@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct UserDetailView: View {
   let user: User
@@ -7,7 +8,12 @@ struct UserDetailView: View {
     GridItem(.flexible()),
     GridItem(.flexible()),
     GridItem(.flexible()),
-    GridItem(.flexible())
+    GridItem(.flexible()),
+  ]
+  
+  let friendsColumns = [
+    GridItem(.flexible()),
+    GridItem(.flexible()),
   ]
   
   var body: some View {
@@ -78,7 +84,7 @@ struct UserDetailView: View {
             .font(.headline)
             .padding(.bottom, 5)
           
-          LazyVGrid(columns: columns, spacing: 10) {
+          LazyVGrid(columns: friendsColumns, spacing: 10) {
             ForEach(user.friends) { friend in
               Text(friend.name)
                 .padding(8)
@@ -97,19 +103,40 @@ struct UserDetailView: View {
 }
 
 #Preview {
-  let example = User(
-    id: UUID(),
-    isActive: true,
-    name: "Test",
-    age: 20,
-    company: "Test Company",
-    email: "test@gmail.com",
-    address: "Test street 12, asdsa",
-    about: "Test about long text something something",
-    registered: .now,
-    tags: ["one", "two", "three"],
-    friends: [Friend(id: UUID(), name: "Alice"), Friend(id: UUID(), name: "Bob")]
-  )
-  
-  return UserDetailView(user: example)
+  do {
+    // Create in-memory model configuration
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    
+    // Initialize the ModelContainer with both User and Friend models
+    let container = try ModelContainer(for: User.self, Friend.self, configurations: config)
+    
+    // Create instances of Friend
+    let friend1 = Friend(id: UUID(), name: "Alice")
+    let friend2 = Friend(id: UUID(), name: "Bob")
+    
+    // Create an instance of User with friends
+    let exampleUser = User(
+      id: UUID(),
+      isActive: true,
+      name: "Test User",
+      age: 25,
+      company: "Test Company",
+      email: "testuser@example.com",
+      address: "123 Test Street",
+      about: "This is a test user profile.",
+      registered: Date(),
+      tags: ["tag1", "tag2"],
+      friends: [friend1, friend2]  // Initialize relationship
+    )
+    
+    // Insert the user into the container to make the relationship active
+    let context = container.mainContext
+    try context.insert(exampleUser)
+    try context.save()
+    
+    return UserDetailView(user: exampleUser)
+      .modelContainer(container)
+  } catch {
+    return Text("Failed to create preview: \(error.localizedDescription)")
+  }
 }
