@@ -4,6 +4,7 @@ import CoreImage
 import CoreImage.CIFilterBuiltins
 import PhotosUI
 import SwiftUI
+import StoreKit
 
 // struct ContentView: View {
 //  @State private var image: Image?
@@ -65,6 +66,7 @@ struct ContentView: View {
   @State private var pickerItems = [PhotosPickerItem]()
   @State private var selectedImage: Image?
   @State private var selectedImages = [Image]()
+  @Environment(\.requestReview) var requestReview
   
   var body: some View {
     VStack {
@@ -86,6 +88,10 @@ struct ContentView: View {
       
       ShareLink(item: example, preview: SharePreview("Singapore Airport", image: example)) {
         Label("Click to Share", systemImage: "airplane")
+      }
+      
+      Button("Leave a review") {
+        requestReview()
       }
       
       selectedImage?
