@@ -65,13 +65,13 @@ struct ContentView: View {
   @State private var pickerItems = [PhotosPickerItem]()
   @State private var selectedImage: Image?
   @State private var selectedImages = [Image]()
-
+  
   var body: some View {
     VStack {
       PhotosPicker(selection: $pickerItems, maxSelectionCount: 3, matching: .any(of: [.images, .not(.screenshots)])) {
         Label("Select a picture", systemImage: "photo")
       }
-
+      
       ScrollView {
         ForEach(0 ..< selectedImages.count, id: \.self) { i in
           selectedImages[i]
@@ -79,7 +79,15 @@ struct ContentView: View {
             .scaledToFit()
         }
       }
-
+      
+      ShareLink(item: URL(string: "https://www.hackingwithswift.com")!, subject: Text("Learn Swift Here"), message: Text("Check out the 100 days of SwiftUI"))
+      
+      let example = Image(.example)
+      
+      ShareLink(item: example, preview: SharePreview("Singapore Airport", image: example)) {
+        Label("Click to Share", systemImage: "airplane")
+      }
+      
       selectedImage?
         .resizable()
         .scaledToFit()
