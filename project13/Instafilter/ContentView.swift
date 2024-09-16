@@ -3,25 +3,29 @@
 import CoreImage
 import CoreImage.CIFilterBuiltins
 import PhotosUI
-import SwiftUI
 import StoreKit
+import SwiftUI
 
 struct ContentView: View {
   @State private var processedImage: Image?
   @State private var filterIntensity = 0.5
+  @State private var selectedItem: PhotosPickerItem?
   
   var body: some View {
     NavigationStack {
       VStack {
         Spacer()
         
-        if let processedImage {
-          processedImage
-            .resizable()
-            .scaledToFit()
-        } else {
-          ContentUnavailableView("No Picture", systemImage: "photo.badge.plus", description: Text("Tap to import a photo"))
+        PhotosPicker(selection: $selectedItem) {
+          if let processedImage {
+            processedImage
+              .resizable()
+              .scaledToFit()
+          } else {
+            ContentUnavailableView("No Picture", systemImage: "photo.badge.plus", description: Text("Tap to import a photo"))
+          }
         }
+        .onChange(of: selectedItem, loadImage)
         
         Spacer()
         
@@ -42,8 +46,14 @@ struct ContentView: View {
     }
   }
   
-  func changeFilter() {
-    
+  func changeFilter() {}
+  
+  func loadImage() {
+    Task {
+      guard let imageData = try await selectedItem?.loadTransferable(type: Data.self) else { return }
+      guard let inputImage = UIImage(data: imageData) else { return }
+      
+    }
   }
 }
 
@@ -102,19 +112,19 @@ struct ContentView: View {
 //  }
 // }
 
-//struct ContentView: View {
+// struct ContentView: View {
 //  @State private var pickerItem: PhotosPickerItem?
 //  @State private var pickerItems = [PhotosPickerItem]()
 //  @State private var selectedImage: Image?
 //  @State private var selectedImages = [Image]()
 //  @Environment(\.requestReview) var requestReview
-//  
+//
 //  var body: some View {
 //    VStack {
 //      PhotosPicker(selection: $pickerItems, maxSelectionCount: 3, matching: .any(of: [.images, .not(.screenshots)])) {
 //        Label("Select a picture", systemImage: "photo")
 //      }
-//      
+//
 //      ScrollView {
 //        ForEach(0 ..< selectedImages.count, id: \.self) { i in
 //          selectedImages[i]
@@ -122,19 +132,19 @@ struct ContentView: View {
 //            .scaledToFit()
 //        }
 //      }
-//      
+//
 //      ShareLink(item: URL(string: "https://www.hackingwithswift.com")!, subject: Text("Learn Swift Here"), message: Text("Check out the 100 days of SwiftUI"))
-//      
+//
 //      let example = Image(.example)
-//      
+//
 //      ShareLink(item: example, preview: SharePreview("Singapore Airport", image: example)) {
 //        Label("Click to Share", systemImage: "airplane")
 //      }
-//      
+//
 //      Button("Leave a review") {
 //        requestReview()
 //      }
-//      
+//
 //      selectedImage?
 //        .resizable()
 //        .scaledToFit()
@@ -147,7 +157,7 @@ struct ContentView: View {
 //    .onChange(of: pickerItems) {
 //      Task {
 //        selectedImages.removeAll()
-//        
+//
 //        for item in pickerItems {
 //          if let loadedImage = try await item.loadTransferable(type: Image.self) {
 //            selectedImages.append(loadedImage)
@@ -156,7 +166,7 @@ struct ContentView: View {
 //      }
 //    }
 //  }
-//}
+// }
 
 #Preview {
   ContentView()
