@@ -6,6 +6,47 @@ import PhotosUI
 import SwiftUI
 import StoreKit
 
+struct ContentView: View {
+  @State private var processedImage: Image?
+  @State private var filterIntensity = 0.5
+  
+  var body: some View {
+    NavigationStack {
+      VStack {
+        Spacer()
+        
+        if let processedImage {
+          processedImage
+            .resizable()
+            .scaledToFit()
+        } else {
+          ContentUnavailableView("No Picture", systemImage: "photo.badge.plus", description: Text("Tap to import a photo"))
+        }
+        
+        Spacer()
+        
+        HStack {
+          Text("Intensity")
+          Slider(value: $filterIntensity)
+        }
+        .padding(.vertical)
+        
+        HStack {
+          Button("Change filter", action: changeFilter)
+          
+          Spacer()
+        }
+      }
+      .padding([.horizontal, .bottom])
+      .navigationTitle("Instafilter")
+    }
+  }
+  
+  func changeFilter() {
+    
+  }
+}
+
 // struct ContentView: View {
 //  @State private var image: Image?
 //
@@ -61,61 +102,61 @@ import StoreKit
 //  }
 // }
 
-struct ContentView: View {
-  @State private var pickerItem: PhotosPickerItem?
-  @State private var pickerItems = [PhotosPickerItem]()
-  @State private var selectedImage: Image?
-  @State private var selectedImages = [Image]()
-  @Environment(\.requestReview) var requestReview
-  
-  var body: some View {
-    VStack {
-      PhotosPicker(selection: $pickerItems, maxSelectionCount: 3, matching: .any(of: [.images, .not(.screenshots)])) {
-        Label("Select a picture", systemImage: "photo")
-      }
-      
-      ScrollView {
-        ForEach(0 ..< selectedImages.count, id: \.self) { i in
-          selectedImages[i]
-            .resizable()
-            .scaledToFit()
-        }
-      }
-      
-      ShareLink(item: URL(string: "https://www.hackingwithswift.com")!, subject: Text("Learn Swift Here"), message: Text("Check out the 100 days of SwiftUI"))
-      
-      let example = Image(.example)
-      
-      ShareLink(item: example, preview: SharePreview("Singapore Airport", image: example)) {
-        Label("Click to Share", systemImage: "airplane")
-      }
-      
-      Button("Leave a review") {
-        requestReview()
-      }
-      
-      selectedImage?
-        .resizable()
-        .scaledToFit()
-    }
-    .onChange(of: pickerItem) {
-      Task {
-        selectedImage = try await pickerItem?.loadTransferable(type: Image.self)
-      }
-    }
-    .onChange(of: pickerItems) {
-      Task {
-        selectedImages.removeAll()
-        
-        for item in pickerItems {
-          if let loadedImage = try await item.loadTransferable(type: Image.self) {
-            selectedImages.append(loadedImage)
-          }
-        }
-      }
-    }
-  }
-}
+//struct ContentView: View {
+//  @State private var pickerItem: PhotosPickerItem?
+//  @State private var pickerItems = [PhotosPickerItem]()
+//  @State private var selectedImage: Image?
+//  @State private var selectedImages = [Image]()
+//  @Environment(\.requestReview) var requestReview
+//  
+//  var body: some View {
+//    VStack {
+//      PhotosPicker(selection: $pickerItems, maxSelectionCount: 3, matching: .any(of: [.images, .not(.screenshots)])) {
+//        Label("Select a picture", systemImage: "photo")
+//      }
+//      
+//      ScrollView {
+//        ForEach(0 ..< selectedImages.count, id: \.self) { i in
+//          selectedImages[i]
+//            .resizable()
+//            .scaledToFit()
+//        }
+//      }
+//      
+//      ShareLink(item: URL(string: "https://www.hackingwithswift.com")!, subject: Text("Learn Swift Here"), message: Text("Check out the 100 days of SwiftUI"))
+//      
+//      let example = Image(.example)
+//      
+//      ShareLink(item: example, preview: SharePreview("Singapore Airport", image: example)) {
+//        Label("Click to Share", systemImage: "airplane")
+//      }
+//      
+//      Button("Leave a review") {
+//        requestReview()
+//      }
+//      
+//      selectedImage?
+//        .resizable()
+//        .scaledToFit()
+//    }
+//    .onChange(of: pickerItem) {
+//      Task {
+//        selectedImage = try await pickerItem?.loadTransferable(type: Image.self)
+//      }
+//    }
+//    .onChange(of: pickerItems) {
+//      Task {
+//        selectedImages.removeAll()
+//        
+//        for item in pickerItems {
+//          if let loadedImage = try await item.loadTransferable(type: Image.self) {
+//            selectedImages.append(loadedImage)
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
 
 #Preview {
   ContentView()
