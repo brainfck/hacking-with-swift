@@ -43,6 +43,7 @@ struct ContentView: View {
             .onChange(of: filterIntensity, applyProcessing)
         }
         .padding(.vertical)
+        .disabled(beginImage == nil)
         
         HStack {
           Button("Change filter", action: changeFilter)
@@ -59,10 +60,13 @@ struct ContentView: View {
         Button("Crystallize") { setFilter(CIFilter.crystallize()) }
         Button("Edges") { setFilter(CIFilter.edges()) }
         Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
+        Button("Motion Blur") { setFilter(CIFilter.motionBlur()) }
         Button("Pixellate") { setFilter(CIFilter.pixellate()) }
         Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
         Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
         Button("Vignette") { setFilter(CIFilter.vignette()) }
+        Button("Mask to Alpha") { setFilter(CIFilter.maskToAlpha()) }
+        Button("Color Invert") { setFilter(CIFilter.colorInvert()) }
         Button("Cancel", role: .cancel) {}
       }
     }
