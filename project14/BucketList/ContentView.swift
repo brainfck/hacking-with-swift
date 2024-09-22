@@ -41,6 +41,8 @@ struct ContentView: View {
         if let coordinate = proxy.convert(position, from: .local) {
           let newLocation = Location(id: UUID(), name: "New Location", description: "", latitude: coordinate.latitude, longitude: coordinate.longitude)
           locations.append(newLocation)
+          // temp fix for long press gesture
+          selectedPlace = locations.first
         }
       }
       .sheet(item: $selectedPlace) { place in
