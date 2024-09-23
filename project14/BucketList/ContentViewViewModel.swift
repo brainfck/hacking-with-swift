@@ -62,12 +62,10 @@ extension ContentView {
       if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
         let reason = "Please authenticate yourself to unlock places."
         
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, _ in
           if success {
             self.isUnlocked = true
-          } else {
-            print(authenticationError)
-          }
+          } else {}
         }
       } else {
         // no biometrics
